@@ -5,7 +5,7 @@
   "tags": "",
   "storage": [
     {"name":"nsi.widget.js","url":"widget.js"},
-    {"name":"nsi.settings.js","url":"settings.js"},
+    {"name":"nsi.settings.js","url":"settings.js"}
   ],
   "data": [{"name": "nsi.json"}]
 }
