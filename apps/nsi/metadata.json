@@ -1,0 +1,11 @@
+{ "id": "nsi",
+  "name": "Non-stop Intervals",
+  "shortName" : "NS Intervals",
+  "description": "A detailed description of my great app",
+  "tags": "",
+  "storage": [
+    {"name":"nsi.widget.js","url":"widget.js"},
+    {"name":"nsi.settings.js","url":"settings.js"},
+  ],
+  "data": [{"name": "nsi.json"}]
+}
