@@ -48,7 +48,7 @@
     if (execute) {
       counter = 5;
       running_func = setInterval(function() {
-                      WIDGETS["widdate"].draw(WIDGETS["widdate"]);
+                      WIDGETS["nsi"].draw(WIDGETS["nsi"]);
                       }, 1000); // update every second
     }
     else if (running_func) {
@@ -58,7 +58,7 @@
   }
 
   // add your widget
-  WIDGETS["widdate"]={
+  WIDGETS["nsi"]={
     area:"tl", // tl (top left), tr (top right), bl (bottom left), br (bottom right), be aware that not all apps support widgets at the bottom of the screen
     width: width, // how wide is the widget? You can change this and call Bangle.drawWidgets() to re-layout
     draw:draw // called to draw the widget
