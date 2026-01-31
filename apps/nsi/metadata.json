@@ -1,8 +1,11 @@
 { "id": "nsi",
   "name": "Non-stop Intervals",
   "shortName" : "NS Intervals",
+  "version": "0.01",
+  "author": "MartinFlores751",
   "description": "A detailed description of my great app",
   "tags": "",
+  "supports": ["BANGLEJS2"],
   "storage": [
     {"name":"nsi.widget.js","url":"widget.js"},
     {"name":"nsi.settings.js","url":"settings.js"}
