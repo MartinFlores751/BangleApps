@@ -5,9 +5,11 @@
   "author": "MartinFlores751",
   "description": "A detailed description of my great app",
   "tags": "",
+  "type": "widget",
+  "tags": "widget",
   "supports": ["BANGLEJS2"],
   "storage": [
-    {"name":"nsi.widget.js","url":"widget.js"},
+    {"name":"nsi.wid.js","url":"widget.js"},
     {"name":"nsi.settings.js","url":"settings.js"}
   ],
   "data": [{"name": "nsi.json"}]
