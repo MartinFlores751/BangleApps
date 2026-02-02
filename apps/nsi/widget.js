@@ -46,6 +46,10 @@
 
     // Start the timer
     if (execute) {
+      if (running_func) {
+        clearInterval(running_func);
+        running_func = undefined;
+      }
       counter = 5;
       running_func = setInterval(function() {
                       WIDGETS["nsi"].draw(WIDGETS["nsi"]);
