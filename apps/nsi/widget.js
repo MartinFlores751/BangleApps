@@ -1,6 +1,7 @@
 // WIDGETS = {}; // <-- for development only
 
 (() => {
+  let buzzer = require('buzz');
   let settings = Object.assign({
     execute: true,
     is_running: false,
@@ -17,13 +18,15 @@
     const minutes = Math.floor(counter / 60);
     const seconds = counter % 60;
 
+    if (seconds <= 3) {
+      buzzer.buzz(".");
+    }
+
     if (minutes <= 0 && seconds <= 0) {
-      // Handle interval over
-      console.log("Out of time!");
       // Set new time
       counter = settings.is_running ? settings.walk : settings.run;
       settings.is_running = !settings.is_running;
-      Bangle.buzz(700);
+      buzzer.buzz("=");
     }
 
     // Do all of the graphics things
