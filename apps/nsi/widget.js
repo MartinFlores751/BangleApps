@@ -1,7 +1,7 @@
 // WIDGETS = {}; // <-- for development only
 
 (() => {
-  const buzzer = require('buzz');
+  const buzzer = require("buzz");
   let settings = Object.assign({
     execute: true,
     is_running: false,
