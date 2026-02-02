@@ -7,12 +7,16 @@
     is_running: false,
     run: 30,
     walk: 30
-  }, require('Storage').readJSON("nsi.json", true) || {});
-  const width = 18; // width of the widget
+  }, require("Storage").readJSON("nsi.json", true) || {});
+  let width = 18; // width of the widget
   let counter = 5;
   let running_func;
 
   function draw() {
+    if (!settings.execute || !width) {
+      return;
+    }
+
     counter--;
 
     const minutes = Math.floor(counter / 60);
@@ -45,15 +49,16 @@
       is_running: false,
       run: 30,
       walk: 30
-    }, require('Storage').readJSON("nsi.json", true) || {});
+    }, require("Storage").readJSON("nsi.json", true) || {});
 
     // Start the timer
-    if (execute) {
+    if (settings.execute) {
       if (running_func) {
         clearInterval(running_func);
         running_func = undefined;
       }
       counter = 5;
+      width = 18;
       running_func = setInterval(function() {
                       WIDGETS["nsi"].draw(WIDGETS["nsi"]);
                       }, 1000); // update every second
@@ -61,6 +66,7 @@
     else if (running_func) {
       clearInterval(running_func);
       running_func = undefined;
+      width = 0;
     }
   }
 
