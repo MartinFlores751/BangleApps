@@ -2,7 +2,7 @@
 
 (() => {
   let settings = Object.assign({
-    execute: false,
+    execute: true,
     is_running: false,
     run: 30,
     walk: 30
