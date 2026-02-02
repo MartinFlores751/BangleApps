@@ -1,7 +1,7 @@
 // WIDGETS = {}; // <-- for development only
 
 (() => {
-  let buzzer = require('buzz');
+  const buzzer = require('buzz');
   let settings = Object.assign({
     execute: true,
     is_running: false,
@@ -19,14 +19,14 @@
     const seconds = counter % 60;
 
     if (seconds <= 3) {
-      buzzer.buzz(".");
+      buzzer.pattern(".");
     }
 
     if (minutes <= 0 && seconds <= 0) {
       // Set new time
       counter = settings.is_running ? settings.walk : settings.run;
       settings.is_running = !settings.is_running;
-      buzzer.buzz("=");
+      buzzer.pattern("=");
     }
 
     // Do all of the graphics things
@@ -68,7 +68,8 @@
   WIDGETS["nsi"]={
     area:"tl", // tl (top left), tr (top right), bl (bottom left), br (bottom right), be aware that not all apps support widgets at the bottom of the screen
     width: width, // how wide is the widget? You can change this and call Bangle.drawWidgets() to re-layout
-    draw:draw // called to draw the widget
+    draw:draw, // called to draw the widget
+    reload: reload
   };
 })()
 
