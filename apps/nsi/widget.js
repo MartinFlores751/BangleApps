@@ -3,35 +3,47 @@
 (() => {
   const buzzer = require("buzz");
   let settings = Object.assign({
-    execute: true,
+    execute: false,
     is_running: false,
     run: 30,
     walk: 30
   }, require("Storage").readJSON("nsi.json", true) || {});
-  let width = 18; // width of the widget
+  let width = 0; // width of the widget
   let counter = 5;
+
   let running_func;
+  let counting_func;
+
+  function count_down() {
+    counter--;
+
+    if (counter <= 3) {
+      buzzer.pattern(".");
+    }
+
+    if (counter <= 0) {
+      // Set new time
+      counter = settings.is_running ? settings.walk : settings.run;
+      settings.is_running = !settings.is_running;
+      if (!settings.is_running) {
+        buzzer.pattern("=");
+      }
+      else {
+        buzzer.pattern(";;;");
+      }
+    }
+  }
 
   function draw() {
+    console.log(this);
+
     if (!settings.execute || !width) {
       return;
     }
 
-    counter--;
-
-    const minutes = Math.floor(counter / 60);
-    const seconds = counter % 60;
-
-    if (seconds <= 3) {
-      buzzer.pattern(".");
-    }
-
-    if (minutes <= 0 && seconds <= 0) {
-      // Set new time
-      counter = settings.is_running ? settings.walk : settings.run;
-      settings.is_running = !settings.is_running;
-      buzzer.pattern("=");
-    }
+    const current_time = counter;
+    const minutes = Math.floor(current_time / 60);
+    const seconds = current_time % 60;
 
     // Do all of the graphics things
     g.reset()
@@ -55,19 +67,27 @@
     if (settings.execute) {
       if (running_func) {
         clearInterval(running_func);
+        clearInterval(counting_func);
         running_func = undefined;
+        counting_func = undefined;
       }
       counter = 5;
-      width = 18;
+      width = 18
+      WIDGETS["nsi"].width = width;
       running_func = setInterval(function() {
                       WIDGETS["nsi"].draw(WIDGETS["nsi"]);
-                      }, 1000); // update every second
+                      }, 1000 * 5);
+      counting_func = setInterval(count_down, 1000);
     }
     else if (running_func) {
       clearInterval(running_func);
+      clearInterval(counting_func);
       running_func = undefined;
+      counting_func = undefined;
       width = 0;
+      WIDGETS["nsi"].width = width;
     }
+    Bangle.drawWidgets();
   }
 
   // add your widget
