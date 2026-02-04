@@ -35,8 +35,6 @@
   }
 
   function draw() {
-    console.log(this);
-
     if (!settings.execute || !width) {
       return;
     }
