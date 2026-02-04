@@ -88,6 +88,22 @@
     Bangle.drawWidgets();
   }
 
+if (settings.execute) {
+      if (running_func) {
+        clearInterval(running_func);
+        clearInterval(counting_func);
+        running_func = undefined;
+        counting_func = undefined;
+      }
+      counter = 5;
+      width = 18
+      WIDGETS["nsi"].width = width;
+      running_func = setInterval(function() {
+                      WIDGETS["nsi"].draw(WIDGETS["nsi"]);
+                      }, 1000 * 5);
+      counting_func = setInterval(count_down, 1000);
+    }
+
   // add your widget
   WIDGETS["nsi"]={
     area:"tl", // tl (top left), tr (top right), bl (bottom left), br (bottom right), be aware that not all apps support widgets at the bottom of the screen
